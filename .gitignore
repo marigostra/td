@@ -6,3 +6,6 @@ docs/
 /tdlib/
 vcpkg/
 .clang-tidy
+jnibuild
+*.jar
+
