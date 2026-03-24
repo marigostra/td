@@ -10,9 +10,13 @@ VERSION=1.8.62.0
 MAVEN_REPO_DIR="$1"
 
 rm -f *.jar
-jar cvf tdlib.jar example/java/build/* > /dev/null
+cd example/java/bin
+mv libtdjni.so org/drinkless/tdlib
+jar cvf ../../../tdlib.jar * > /dev/null
+mv org/drinkless/tdlib/libtdjni.so .
+cd - > /dev/null
 mvn org.apache.maven.plugins:maven-install-plugin:2.3.1:install-file \
     -Dfile=$NAME.jar \
     -DgroupId=$GROUP -DartifactId=$NAME -Dversion=$VERSION \
-    -Dpackaging=jar -DcreateChecksum=true -DgeneratePom=false \
+    -Dpackaging=jar -DcreateChecksum=true -DgeneratePom=true \
     -DlocalRepositoryPath="$MAVEN_REPO_DIR" -B -q
