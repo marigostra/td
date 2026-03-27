@@ -1,10 +1,12 @@
 #!/bin/bash -e
 THIS="${0##*/}"
 
+
 if [ -z "$JAVA_HOME" ]; then
+    echo Settings JAVA_HOME
     export JAVA_HOME=$(dirname $(dirname $(readlink /etc/alternatives/java)))
 fi
-
+echo "JAVA_HOME is $JAVA_HOME"
 
 GROUP=org.drinkless
 NAME=tdlib

@@ -4,8 +4,10 @@ THIS="${0##*/}"
 SRC_DIR="$(pwd)"
 
 if [ -z "$JAVA_HOME" ]; then
+    echo Settings JAVA_HOME
     export JAVA_HOME=$(dirname $(dirname $(readlink /etc/alternatives/java)))
 fi
+echo "JAVA_HOME is $JAVA_HOME"
 
 
 
