@@ -4,11 +4,9 @@ THIS="${0##*/}"
 SRC_DIR="$(pwd)"
 
 if [ -z "$JAVA_HOME" ]; then
-    echo Settings JAVA_HOME
-    export JAVA_HOME=$(dirname $(dirname $(readlink /etc/alternatives/java)))
+    JAVA_HOME=$(dirname $(dirname $(readlink /etc/alternatives/java)))
+    export JAVA_HOME
 fi
-echo "JAVA_HOME is $JAVA_HOME"
-
 
 
 mkdir jnibuild
@@ -20,4 +18,12 @@ mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DTd_DIR=$SRC_DIR/example/java/td/lib/cmake/Td -DCMAKE_INSTALL_PREFIX:PATH=.. ..
 cmake --build . --target install
+
+rm -f *.jar
+cd example/java/bin
+mv libtdjni.so org/drinkless/tdlib
+jar cvf ../../../tdlib.jar * > /dev/null
+mv org/drinkless/tdlib/libtdjni.so .
+cd - > /dev/null
+
 echo OK
