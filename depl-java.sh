@@ -1,6 +1,11 @@
 #!/bin/bash -e
 THIS="${0##*/}"
 
+if [ -z "$JAVA_HOME" ]; then
+    export JAVA_HOME=$(dirname $(dirname $(readlink /etc/alternatives/java)))
+fi
+
+
 GROUP=org.drinkless
 NAME=tdlib
 VERSION=1.8.62.0

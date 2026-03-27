@@ -2,6 +2,13 @@
 
 THIS="${0##*/}"
 SRC_DIR="$(pwd)"
+
+if [ -z "$JAVA_HOME" ]; then
+    export JAVA_HOME=$(dirname $(dirname $(readlink /etc/alternatives/java)))
+fi
+
+
+
 mkdir jnibuild
 cd jnibuild
 cmake -DCMAKE_BUILD_TYPE=Release -DTD_ENABLE_JNI=ON -DCMAKE_INSTALL_PREFIX:PATH=../example/java/td ..
