@@ -18,6 +18,7 @@ mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DTd_DIR=$SRC_DIR/example/java/td/lib/cmake/Td -DCMAKE_INSTALL_PREFIX:PATH=.. ..
 cmake --build . --target install
+cd ../../..
 
 rm -f *.jar
 cd example/java/bin
